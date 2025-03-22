@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apollo Doctor Appointment System</title>
+
+     <style>
+    
+    body {
+  font-family: Arial, sans-serif;
+  background-image: url('bodybg.jpg'); 
+  background-size: contain; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+
+    header {
+  background-color: #5b34db;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+  font-size: 24px;
+  background-image: url('bg logo.jpg'); 
+  background-repeat: no-repeat;
+  background-position: left center; 
+  background-size: contain; 
+  margin-bottom: 20px;
+}
+
+    .error {
+      color: #e32611;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      display: block; 
+      margin-top: 5px;
+    }
+
+    label, input, textarea, select {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+  
+</head>
+<body>
+  <header>
+    Apollo Hospital Appointment System
+  </header>
+  <center>
+    <form id="hospitalForm" onsubmit="return validateForm()">
+      <!-- Your existing form fields -->
+      <label for="patientName">Patient Name:</label>
+      <input type="text" id="patientName" name="patientName" required>
+      <span id="patientNameError" class="error"></span>
+  
+      <label for="patientAge">Age:</label>
+      <input type="number" id="patientAge" name="patientAge" required>
+      <span id="patientAgeError" class="error"></span>
+  
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <span id="genderError" class="error"></span>
+  
+      <label for="medicalCondition">symptons:</label>
+      <textarea id="medicalCondition" name="medicalCondition" rows="4" required></textarea>
+      <span id="medicalConditionError" class="error"></span>
+      <label for="bloodGroup">Blood Group:</label>
+  <input type="text" id="bloodGroup" name="bloodGroup" required>
+  <span id="bloodGroupError" class="error"></span>
+  
+  <label for="height">Height (in cm):</label>
+  <input type="number" id="height" name="height" required>
+  <span id="heightError" class="error"></span>
+  
+  <label for="weight">Weight (in kg):</label>
+  <input type="number" id="weight" name="weight" required>
+  <span id="weightError" class="error"></span>
+  
+  <label for="pastMedicalProblems">Past Medical Problems:</label>
+  <textarea id="pastMedicalProblems" name="pastMedicalProblems" rows="4" required></textarea>
+  <span id="pastMedicalProblemsError" class="error"></span>
+  <label for="appointmentDate">Date of Appointment:</label>
+  <input type="date" id="appointmentDate" name="appointmentDate" required>
+  <span id="appointmentDateError" class="error"></span>
+  
+  <label for="doctorAssigned">Doctor Assigned:</label>
+  <input type="text" id="doctorAssigned" name="doctorAssigned" required>
+  <span id="doctorAssignedError" class="error"></span>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <span id="emailError" class="error"></span>
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="tel" id="phoneNumber" name="phoneNumber" required>
+      <span id="phoneNumberError" class="error"></span>
+
+      <input type="submit" value="Submit">
+    </form>
+  </center>
+  <script>
+    function validateForm() {
+      var patientName = document.getElementById('patientName').value;
+      var patientAge = document.getElementById('patientAge').value;
+      var gender = document.getElementById('gender').value;
+      var medicalCondition = document.getElementById('medicalCondition').value;
+      var appointmentDate = document.getElementById('appointmentDate').value;
+      var email = document.getElementById('email').value;
+      var phoneNumber = document.getElementById('phoneNumber').value;
+
+      var isValid = true;
+
+      // Existing validations
+
+      if (patientName.trim() === "") {
+        window.alert("Please enter the patient's name");
+        document.getElementById('patientName').focus();
+        return false;
+      }
+
+      // Add similar validations for other fields
+      
+      if (isNaN(patientAge) || patientAge <= 0) {
+        window.alert("Please enter a valid age");
+        patientAge.focus();
+        return false;
+      }
+
+      if (gender === "") {
+        window.alert("Please select the patient's gender");
+        gender.focus();
+        return false;
+      }
+
+      if (medicalCondition.trim() === "") {
+        window.alert("Please enter the medical condition");
+        medicalCondition.focus();
+        return false;
+        
+      }
+      if (appointmentDate.trim() === "") {
+        window.alert("Please enter the current date ");
+        appointmentDate.focus();
+        return false;
+      }
+
+      
+      var emailRegex = /^\S+@\S+\.\S+$/;
+      if (!emailRegex.test(email)) {
+        window.alert("Please enter a valid email address");
+        document.getElementById('email').focus();
+        return false;
+      }
+
+      
+      var phoneNumberRegex = /^\d{10}$/; 
+      if (!phoneNumberRegex.test(phoneNumber)) {
+        window.alert("Please enter a valid phone number");
+        document.getElementById('phoneNumber').focus();
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
